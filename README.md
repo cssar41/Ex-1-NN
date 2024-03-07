@@ -1,5 +1,5 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME: Saravanan C</H3>
+<H3>ENTER YOUR REGISTER NO.: 212222110041</H3>
 <H3>EX. NO.1</H3>
 <H3>DATE</H3>
 <H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
@@ -35,13 +35,85 @@ STEP 3:Taking care of missing data<BR>
 STEP 4:Encoding categorical data<BR>
 STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
-
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+from google.colab import files
+import pandas as pd
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
 
+#Reading the dataset
+df=pd.read_csv("/content/Churn_Modelling.csv", index_col="RowNumber")
+df
+#Dropping the unwanted Columns
+df.drop(['CustomerId'],axis=1,inplace=True)
+df.drop(['Surname'],axis=1,inplace=True)
+df.drop('Age',axis=1,inplace=True)
+df.drop('Geography',axis=1,inplace=True)
+df.drop('Gender',axis=1,inplace=True)
+df
+#Checking for null values
+df.isnull().sum()
+#Checking for duplicate values
+df.duplicated()
+#Describing the dataset
+df.describe()
+#Scaling the dataset
+scaler=StandardScaler()
+df1=pd.DataFrame(scaler.fit_transform(df))
+df1
+#Allocating X and Y attributes
+x=df1.iloc[:,:-1].values
+x
+y=df1.iloc[:,-1].values
+y
+#Splitting the data into training and testing dataset
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2)
+print(x_train)
+print(len(x_train))
+print(x_test)
+print(len(x_test))
+```
 
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
+## The Dataset:
+
+![image](https://github.com/Prasanth9025/Ex-1-NN/assets/118343686/c2ba1d96-f8ba-46d8-9b99-67c454af4fba)
+
+## Dropping unwanted features
+
+![image](https://github.com/Prasanth9025/Ex-1-NN/assets/118343686/f03ed636-bdc0-4315-a407-5490d75b06c9)
+
+## Checking for null values
+
+![image](https://github.com/Prasanth9025/Ex-1-NN/assets/118343686/af07a56e-d1e8-465d-a861-6a5fd6483a93)
+
+## Checking for duplication
+
+![image](https://github.com/Prasanth9025/Ex-1-NN/assets/118343686/62e4ee4c-7baa-4553-82d1-a70b46e7ef62)
+
+## Describing the dataset
+
+![image](https://github.com/Prasanth9025/Ex-1-NN/assets/118343686/75cda078-b795-4ac9-92cd-7579048da859)
+
+## Scaling the values
+
+![image](https://github.com/Prasanth9025/Ex-1-NN/assets/118343686/97eb666f-0deb-40cc-8a74-dc8e02017915)
+
+
+## X Features
+
+![image](https://github.com/Prasanth9025/Ex-1-NN/assets/118343686/91be32c5-5bf5-4c44-a2c4-08845020828b)
+
+## Y Features
+
+![image](https://github.com/Prasanth9025/Ex-1-NN/assets/118343686/214b5709-3d92-45a4-8472-d35af126d98e)
+
+## Splitting the training and testing dataset
+
+![image](https://github.com/Prasanth9025/Ex-1-NN/assets/118343686/adb96d96-e270-46a1-b85d-71e7841ce99e)
 
 
 ## RESULT:
